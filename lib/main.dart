@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:webapp/responsive/desktop_layout.dart';
+import 'package:webapp/responsive/mobile_layout.dart';
+import 'package:webapp/responsive/responsive_layout.dart';
+import 'package:webapp/top_nav_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,40 +19,22 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+class MyHomePage extends StatelessWidget {
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      backgroundColor: width < 700 ? Colors.deepPurple : Colors.lightGreen,
-      body: Center(
-        child: Text(width.toString()),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      key: scaffoldKey,
+      appBar: TopBar(),
+      endDrawer: ResponsiveLayout.isMobileLayout(context) ? Drawer() : null,
+      body: ResponsiveLayout(mobileLayout: MobileLayout(), desktopLayout: DesktopLayout(sideBar: Container(),)) // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
