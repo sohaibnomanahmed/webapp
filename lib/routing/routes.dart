@@ -4,7 +4,7 @@ const testmonialPage = "Testmonial";
 const aboutPage = "About";
 const contactPage = "Contact";
 
-List navMenu = [
+List<String> navMenu = [
   homePage,
   coursesPage,
   testmonialPage,
