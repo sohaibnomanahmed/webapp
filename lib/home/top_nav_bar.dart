@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:webapp/routing/routes.dart';
 
-import 'responsive/responsive_layout.dart';
+import '../responsive/responsive_layout.dart';
 
 class TopBar extends StatelessWidget implements PreferredSizeWidget {
   const TopBar({Key? key}) : super(key: key);
@@ -29,7 +29,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
         )),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: ElevatedButton(onPressed: (){}, child: Text('Login')),
+          child: ElevatedButton(onPressed: () => Routemaster.of(context).push("/login"), child: Text('Login')),
         )
     ]);
   }

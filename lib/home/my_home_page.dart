@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:webapp/responsive/responsive_layout.dart';
-import 'package:webapp/top_nav_bar.dart';
+import 'package:webapp/home/top_nav_bar.dart';
 
-import 'responsive/desktop_layout.dart';
-import 'responsive/mobile_layout.dart';
+import '../responsive/desktop_layout.dart';
+import '../responsive/mobile_layout.dart';
 
 class MyHomePage extends StatelessWidget {
   //final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();

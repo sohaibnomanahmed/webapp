@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:routemaster/routemaster.dart';
-import 'package:webapp/about_page.dart';
-import 'package:webapp/courses_page.dart';
-import 'package:webapp/home_page.dart';
+import 'package:webapp/home/about_page.dart';
+import 'package:webapp/authentication/login_page.dart';
+import 'package:webapp/home/courses_page.dart';
+import 'package:webapp/home/home_page.dart';
+import 'package:webapp/routing/routes.dart';
 
-import 'my_home_page.dart';
+import 'home/my_home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,25 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      routerDelegate: RoutemasterDelegate(
-        routesBuilder: (context) => RouteMap(
-          routes: {
-            '/': (route) => TabPage(child: MyHomePage(), paths: const [
-                  '/home',
-                  '/courses',
-                  '/testmonial',
-                  '/about',
-                  '/contact'
-                ]),
-            //'/login': (route) => MaterialPage(child: MyHomePage()),
-            '/home': (route) => MaterialPage(child: HomePage()),
-            '/courses': (route) => MaterialPage(child: CoursesPage()),
-            '/testmonial': (route) => MaterialPage(child: AboutPage()),
-            '/about': (route) => MaterialPage(child: AboutPage()),
-            '/contact': (route) => MaterialPage(child: AboutPage()),
-          },
-        ),
-      ),
+      routerDelegate: Routes.delegate,
       routeInformationParser: const RoutemasterParser(),
     );
   }
