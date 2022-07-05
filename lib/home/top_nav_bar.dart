@@ -11,27 +11,31 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final tabPage = TabPage.of(context);
     return AppBar(
-      
-      flexibleSpace: tabPage.index == 0 ? Image.asset('assets/1.jpg', fit: BoxFit.fitWidth) : null,
-      actions: [
-        Container(
-          width: 600,
-          child: TabBar(
-          controller: tabPage.controller,
-          //flexibleSpace: Image.asset('assets/1.jpg', fit: BoxFit.cover,),
-          tabs: ResponsiveLayout.isMobileLayout(context)
-              ? []
-              : [
-                  ...navMenu.map(
-                    (e) => Tab(text: e,)
-                  )
-                ],
-        )),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ElevatedButton(onPressed: () => Routemaster.of(context).push("/login"), child: Text('Login')),
-        )
-    ]);
+        flexibleSpace: tabPage.index == 0
+            ? Image.asset('assets/1.jpg', fit: BoxFit.fitWidth)
+            : null,
+        actions: ResponsiveLayout.isMobileLayout(context) ? [] : [
+          Container(
+            width: 600,
+            child: TabBar(
+              controller: tabPage.controller,
+              //flexibleSpace: Image.asset('assets/1.jpg', fit: BoxFit.cover,),
+              tabs: ResponsiveLayout.isMobileLayout(context)
+                  ? []
+                  : [
+                      ...navMenu.map((e) => Tab(
+                            child: Text(e),
+                          ))
+                    ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ElevatedButton(
+                onPressed: () => Routemaster.of(context).push("/login"),
+                child: Text('Login')),
+          )
+        ]);
   }
 
   @override

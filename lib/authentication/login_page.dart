@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class LoginPage extends StatelessWidget {
   String _email = '';
@@ -14,12 +12,13 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text("Login")),
       body: Center(child: Container(
-        width: 500,
+        width: 400,
         child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              //const SizedBox(height: 20),
+              Image.asset('assets/logo.png'),
+              const SizedBox(height: 20),
               TextField(
                 decoration: const InputDecoration(hintText: 'Email'),
                 keyboardType: TextInputType.emailAddress,
@@ -32,14 +31,17 @@ class LoginPage extends StatelessWidget {
                 obscureText: true,
                 onChanged: (value) => _password = value,
               ),
-              Container(
+              const SizedBox(height: 10),
+              Align(
                 alignment: Alignment.centerLeft,
                 child: TextButton(
                   onPressed: () {},
                   child: const Text('Forgot Password'),
                 ),
               ),
+              const SizedBox(height: 10),
               ElevatedButton(
+                style: TextButton.styleFrom(minimumSize: const Size.fromHeight(40)),
                 onPressed: isLoading
                     ? null
                     : () async {
@@ -53,10 +55,10 @@ class LoginPage extends StatelessWidget {
                         //         : Theme.of(context).errorColor));
                         // if(res.item1){
                         //   Navigator.of(context).pop();
-                        // }        
+                        // }   
                       },
                 child: const Text('Login'),
-              )
+              ),
             ],
           ),
       ),),

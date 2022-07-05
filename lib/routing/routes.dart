@@ -22,7 +22,7 @@ List<String> navMenu = [
 ];
 
 class Routes {
-  static final delegate = RoutemasterDelegate(
+  static final routemasterDelegate = RoutemasterDelegate(
     routesBuilder: (context) => RouteMap(
       routes: {
         '/': (route) => TabPage(child: MyHomePage(), paths: const [

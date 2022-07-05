@@ -11,6 +11,10 @@ class Theming {
   static const Color _secondaryDark = Color(0xFF242339);
   static const Color _iconDark = Color(0xFF363740);
 
+  static const Color _light = Color(0xFFF7F8FC);
+  static const Color _lightGray = Color(0xFFA4A6B3);
+  static const Color _darkGray = Color(0xFF363740);
+
   // default values
   static const double defaultElevation = 0;
 
@@ -19,9 +23,9 @@ class Theming {
 
   // appBar
   static const appBarTheme = AppBarTheme(
-    foregroundColor: _primaryDark,
+    //foregroundColor: _primaryDark, # text, icons etc..
     elevation: defaultElevation,
-    backgroundColor: Colors.transparent,
+    //backgroundColor: Colors.transparent,
   );
 
   // buttons
@@ -47,7 +51,7 @@ class Theming {
 
   // themes
   static final lightTheme = ThemeData(
-    primaryColor: _primary,
+    //primaryColor: _primary,
     colorScheme: const ColorScheme.light().copyWith(
       primary: _primary,
       secondary: _primaryLight,

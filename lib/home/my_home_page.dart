@@ -5,6 +5,7 @@ import 'package:webapp/home/top_nav_bar.dart';
 
 import '../responsive/desktop_layout.dart';
 import '../responsive/mobile_layout.dart';
+import '../routing/routes.dart';
 
 class MyHomePage extends StatelessWidget {
   //final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
@@ -15,8 +16,41 @@ class MyHomePage extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       //key: scaffoldKey,
-      appBar: TopBar(),
-      endDrawer: ResponsiveLayout.isMobileLayout(context) ? Drawer() : null,
+      appBar: const TopBar(),
+      endDrawer: ResponsiveLayout.isMobileLayout(context)
+          ? Drawer(
+              child: Column(
+                children: [
+                  const SizedBox(height: 20),
+                  // NOTE another option is to use NavigationRail
+                  Container(
+                    height: 300,
+                    width: double.infinity,
+                 
+                    child: RotatedBox(
+                      quarterTurns: 1,
+                      child: TabBar(
+                        
+                        labelColor: Theme.of(context).primaryColor,
+                        controller: tabPage.controller,
+                        tabs: [
+                          ...navMenu.map((e) => 
+                            Tab(
+                              height: double.infinity,
+                                  child: RotatedBox(
+                            quarterTurns: -1,
+                            child: Text(e),
+                                ),
+                          ))
+                        ],
+                      ),
+                    ),
+                  ),
+                  Expanded(child: Container())
+                ],
+              ),
+            )
+          : null,
       body: ResponsiveLayout(
         mobileLayout: MobileLayout(
           child: TabBarView(
