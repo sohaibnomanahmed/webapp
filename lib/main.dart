@@ -3,7 +3,7 @@ import 'package:routemaster/routemaster.dart';
 import 'package:webapp/routing/routes.dart';
 import 'package:webapp/theme/theming.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 
