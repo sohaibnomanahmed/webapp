@@ -44,6 +44,7 @@ dependencies:
     git:
       url: https://github.com/sohaibnomanahmed/giph_picker
       ref: main
+  firebase_core: ^1.19.1
 
 dev_dependencies:
   flutter_test:
