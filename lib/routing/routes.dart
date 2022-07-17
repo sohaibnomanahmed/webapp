@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:routemaster/routemaster.dart';
 
+import '../auth/auth_page.dart';
+import '../auth/auth_provider.dart';
 import '../home/about_page.dart';
-import '../authentication/login_page.dart';
 import '../home/courses_page.dart';
 import '../home/home_page.dart';
 import '../home/my_home_page.dart';
@@ -32,7 +34,8 @@ class Routes {
               '/about',
               '/contact'
             ]),
-        '/login': (route) => MaterialPage(child: LoginPage()),
+            // TODO should give services to provider to make them testable and make providers outside widget tree
+        '/login': (route) => MaterialPage(child: ChangeNotifierProvider(create: (_) => AuthProvider(), child: AuthPage())),
         '/home': (route) => MaterialPage(child: HomePage()),
         '/courses': (route) => MaterialPage(child: CoursesPage()),
         '/testmonial': (route) => MaterialPage(child: AboutPage()),
