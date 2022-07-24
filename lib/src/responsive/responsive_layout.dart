@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:webapp/responsive/constraints.dart';
+
+import 'constraints.dart';
+
 
 class ResponsiveLayout extends StatelessWidget {
   final Widget mobileLayout;

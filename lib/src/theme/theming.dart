@@ -3,26 +3,30 @@ import 'package:google_fonts/google_fonts.dart';
 
 class Theming {
   // colors - make tints at https://maketintsandshades.com
-  static const Color _primary = Color(0xFF6C67FF); // #6D67FF
-  static const Color _primaryLight = Color(0xFF8985FF);
-  static const Color _primaryDark = Color(0xFF5652CC);
+  final Color _primary = Colors.amber; // #6D67FF
+  // static const Color _primaryLight = Color(0xFF8985FF);
+  // static const Color _primaryDark = Color(0xFF5652CC);
 
-  static const Color _bgcolorDark = Color(0xFF19182C);
-  static const Color _secondaryDark = Color(0xFF242339);
-  static const Color _iconDark = Color(0xFF363740);
+  final Color _secondary = Colors.deepOrange; // #6D67FF
+  // static const Color _secondaryLight = Color(0xFF8985FF);
+  // static const Color _secondaryDark = Color(0xFF5652CC);
 
-  static const Color _light = Color(0xFFF7F8FC);
-  static const Color _lightGray = Color(0xFFA4A6B3);
-  static const Color _darkGray = Color(0xFF363740);
+  final Color _bgcolorDark = const Color(0xFF19182C);
+  final Color _secondaryDark = const Color(0xFF242339);
+  // static const Color _iconDark = Color(0xFF363740);
+
+  // static const Color _light = Color(0xFFF7F8FC);
+  // static const Color _lightGray = Color(0xFFA4A6B3);
+  // static const Color _darkGray = Color(0xFF363740);
 
   // default values
-  static const double defaultElevation = 0;
+  final double defaultElevation = 0;
 
   // font
-  static const textTheme = GoogleFonts.ralewayTextTheme;
+  final textTheme = GoogleFonts.ralewayTextTheme;
 
   // appBar
-  static const appBarTheme = AppBarTheme(
+  final appBarTheme = AppBarTheme(
     //foregroundColor: _primaryDark, # text, icons etc..
     elevation: defaultElevation,
     //backgroundColor: Colors.transparent,
@@ -51,10 +55,9 @@ class Theming {
 
   // themes
   static final lightTheme = ThemeData(
-    //primaryColor: _primary,
     colorScheme: const ColorScheme.light().copyWith(
       primary: _primary,
-      secondary: _primaryLight,
+      secondary: _secondary,
     ),
     elevatedButtonTheme: elevetedButtonTheme,
     floatingActionButtonTheme: floatingActionButtonTheme,
@@ -67,7 +70,7 @@ class Theming {
   static final darkTheme = ThemeData.dark().copyWith(
     primaryColor: _primary,
     colorScheme: const ColorScheme.dark()
-        .copyWith(primary: _primary, secondary: _primaryLight),
+        .copyWith(primary: _primary, secondary: _secondary),
     elevatedButtonTheme: elevetedButtonTheme,
     floatingActionButtonTheme: floatingActionButtonTheme,
     inputDecorationTheme: inputDecorationTheme,

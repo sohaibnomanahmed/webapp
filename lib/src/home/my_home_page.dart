@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:routemaster/routemaster.dart';
-import 'package:webapp/responsive/responsive_layout.dart';
-import 'package:webapp/home/top_nav_bar.dart';
 
 import '../responsive/desktop_layout.dart';
 import '../responsive/mobile_layout.dart';
+import '../responsive/responsive_layout.dart';
 import '../routing/routes.dart';
+import 'top_nav_bar.dart';
 
 class MyHomePage extends StatelessWidget {
   //final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
@@ -23,14 +23,12 @@ class MyHomePage extends StatelessWidget {
                 children: [
                   const SizedBox(height: 20),
                   // NOTE another option is to use NavigationRail
-                  Container(
+                  SizedBox(
                     height: 300,
                     width: double.infinity,
-                 
                     child: RotatedBox(
                       quarterTurns: 1,
                       child: TabBar(
-                        
                         labelColor: Theme.of(context).primaryColor,
                         controller: tabPage.controller,
                         tabs: [

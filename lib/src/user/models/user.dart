@@ -7,6 +7,11 @@ class User {
   final String email;
   final String imageUrl;
   final DateTime creationTime;
+  /// initilized when data is fetched from firestore
+  late bool isMe;
+
+  // getters
+  String get fullName => "$firstname $lastname";
 
   User({
     required this.id,

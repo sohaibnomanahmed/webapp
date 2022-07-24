@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:routemaster/routemaster.dart';
-import 'package:webapp/routing/routes.dart';
 
 import '../responsive/responsive_layout.dart';
+import '../routing/routes.dart';
 
 class TopBar extends StatelessWidget implements PreferredSizeWidget {
   const TopBar({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
             ? Image.asset('assets/1.jpg', fit: BoxFit.fitWidth)
             : null,
         actions: ResponsiveLayout.isMobileLayout(context) ? [] : [
-          Container(
+          SizedBox(
             width: 600,
             child: TabBar(
               controller: tabPage.controller,
@@ -33,7 +33,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
                 onPressed: () => Routemaster.of(context).push("/login"),
-                child: Text('Login')),
+                child: const Text('Login')),
           )
         ]);
   }

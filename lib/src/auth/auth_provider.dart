@@ -2,11 +2,19 @@ import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/foundation.dart';
 import 'package:tuple/tuple.dart';
 
+
 import '../user/models/user.dart';
+import '../user/user_service.dart';
 import 'auth_service.dart';
 
 class AuthProvider with ChangeNotifier {
-  final AuthService _authService = AuthService();
+  final AuthService authService;
+  final UserService userService;
+
+  AuthProvider({
+    required this.authService,
+    required this.userService
+  });
 
   var _isLoading = false;
   final String _defaultMessage =
@@ -30,7 +38,7 @@ class AuthProvider with ChangeNotifier {
     }
     try {
       final userCredentials =
-          await _authService.signIn(email: email.trim(), password: password);
+          await authService.signIn(email: email.trim(), password: password);
       // final user = userCredentials.user!;
       // send email varification TODO add bakc in prod
       // if (!user.emailVerified) {
@@ -55,7 +63,7 @@ class AuthProvider with ChangeNotifier {
     _isLoading = true;
     notifyListeners();
     try {
-      await _authService.resetPassword(email);
+      await authService.resetPassword(email);
     } on firebase_auth.FirebaseAuthException catch (error) {
       _isLoading = false;
       notifyListeners();
@@ -89,7 +97,7 @@ class AuthProvider with ChangeNotifier {
     }
     try {
       // create user
-      final userCredentials = await _authService.createUser(
+      final userCredentials = await authService.createUser(
           email: email.trim(), password: password);
       final firebaseUser = userCredentials.user!;
       final time = firebaseUser.metadata.creationTime;
@@ -99,7 +107,7 @@ class AuthProvider with ChangeNotifier {
       }
       // create profile data in firestore
       final user = User(
-        uid: firebaseUser.uid,
+        id: firebaseUser.uid,
         creationTime: time,
         firstname: firstname,
         lastname: lastname,
@@ -112,13 +120,13 @@ class AuthProvider with ChangeNotifier {
       // Many times own image and name is needed, not having to load that information goes faster as its included with the current user
       await firebaseUser.updateDisplayName(user.fullName);
       await firebaseUser.updatePhotoURL(user.imageUrl);
-      await _userService.setUser(uid: user.uid, user: user);
+      await userService.setUser(uid: user.id, user: user);
 
       // send email varification
       if (!firebaseUser.emailVerified) {
         await firebaseUser.sendEmailVerification();
         // log user out so he/she can log inn
-        await _authService.signOut();
+        await authService.signOut();
       }
     } on firebase_auth.FirebaseAuthException catch (error) {
       errorMessage = error.message ?? _defaultMessage;
