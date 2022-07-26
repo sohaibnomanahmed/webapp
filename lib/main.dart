@@ -13,9 +13,8 @@ void main() async {
   );
   await FirebaseAuth.instance.authStateChanges().isEmpty;
 
-  // services
-
   // infrastructure
+  // TODO maybe create a own service class
   final routes = Routes();
   final theming = Theming();
 

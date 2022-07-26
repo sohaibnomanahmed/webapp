@@ -13,7 +13,6 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tabPage = TabPage.of(context);
-    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       //key: scaffoldKey,
       appBar: const TopBar(),
