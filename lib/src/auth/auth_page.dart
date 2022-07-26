@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'auth_provider.dart';
 
 class AuthPage extends StatefulWidget {
-  AuthPage({Key? key}) : super(key: key);
+  const AuthPage({Key? key}) : super(key: key);
 
   @override
   State<AuthPage> createState() => _AuthPageState();
@@ -89,6 +89,7 @@ class _AuthPageState extends State<AuthPage> {
                         : () async {
                             final scaffold = ScaffoldMessenger.of(context);
                             final theme = Theme.of(context);
+                            //final router = Routemaster.of(context);
                             if (_isLogin) {
                               final res = await context
                                   .read<AuthProvider>()
@@ -98,9 +99,9 @@ class _AuthPageState extends State<AuthPage> {
                                   backgroundColor: res.item1
                                       ? Colors.teal
                                       : theme.errorColor));
-                              // if(res.item1){
-                              //   Navigator.of(context).pop();
-                              // }
+                              //if (res.item1) {
+                                //router.replace('/'); //TODO needed?
+                              //}
                             } else {
                               final res = await context
                                   .read<AuthProvider>()
@@ -113,12 +114,14 @@ class _AuthPageState extends State<AuthPage> {
                                   content: Text(res.item2),
                                   backgroundColor: res.item1
                                       ? Colors.teal
-                                      : theme.errorColor));        
+                                      : theme.errorColor));
                             }
                           },
-                    child: _isLogin
-                        ? const Text('Login')
-                        : const Text('Create Account'),
+                    child: isLoading
+                        ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator())
+                        : _isLogin
+                            ? const Text('Login')
+                            : const Text('Create Account'),
                   ),
                   const SizedBox(height: 10),
                   TextButton(

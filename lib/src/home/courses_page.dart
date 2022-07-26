@@ -5,6 +5,6 @@ class CoursesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('Courses'));
+    return const Center(child: Text('Courses'));
   }
 }
